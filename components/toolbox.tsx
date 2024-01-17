@@ -7,7 +7,7 @@ import {
   Input as InputIcon,
   CheckBox as CheckBoxIcon,
   RadioButtonChecked as RadioIcon,
-  Image as ImageIcon,
+  ImageOutlined as ImageIcon,
   Title as TitleIcon,
   TabOutlined as TabOutlinedIcon
 } from '@mui/icons-material';
@@ -19,6 +19,7 @@ import getDefaultTextComponent from '@/utils/getDefaultTextComponent';
 import getDefaultInputComponent from '@/utils/getDefaultInputComponent';
 import getDefaultTitleComponent from '@/utils/getDefaultTitleComponent';
 import getDefaultTabComponent from '@/utils/getDefaultTabComponent';
+import getDefaultImageComponent from '@/utils/getDefaultImageComponent';
 
 type ToolboxProps = {};
 
@@ -48,7 +49,12 @@ const Toolbox: FC<ToolboxProps> = () => {
       type: 'tab',
       name: 'Tab',
       icon: <TabOutlinedIcon />
-    }
+    },
+    {
+      type: 'image',
+      name: 'Image',
+      icon: <ImageIcon />
+    },
     // {
     //   type: 'textarea',
     //   name: 'Textarea',
@@ -64,11 +70,6 @@ const Toolbox: FC<ToolboxProps> = () => {
     //   name: 'Radio',
     //   icon: <RadioIcon />
     // },
-    // {
-    //   type: 'image',
-    //   name: 'Image',
-    //   icon: <ImageIcon />
-    // }
   ];
 
   const onBasicComponentClick = (type: IComponentType) => {
@@ -87,6 +88,9 @@ const Toolbox: FC<ToolboxProps> = () => {
         break;
       case 'tab':
         addComponent(getDefaultTabComponent());
+        break;
+      case 'image':
+        addComponent(getDefaultImageComponent());
         break;
     }
   }
@@ -107,6 +111,9 @@ const Toolbox: FC<ToolboxProps> = () => {
         break;
       case 'tab':
         e.dataTransfer.setData('component', JSON.stringify(getDefaultTabComponent()));
+        break;
+      case 'image':
+        e.dataTransfer.setData('component', JSON.stringify(getDefaultImageComponent()));
         break;
     }
   }

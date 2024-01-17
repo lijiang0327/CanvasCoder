@@ -12,6 +12,7 @@ import Button from './Button';
 import Text from './Text';
 import Title from './Title';
 import Tab from './Tab';
+import Image from './Image';
 
 type CmpProps = {
   componentData: IComponent
@@ -228,10 +229,11 @@ const Cmp: FC<CmpProps> = ({componentData, canvasLocked, isRendering = false, pa
         onClick={componentEditable ? onCmpClickHandler : undefined}
       >
         {type === 'button' && <Button type="primary" style={innerStyle} isRendering={isRendering} componentData={componentData}>{text}</Button>}
-        {type === 'text' && <Text componentData={componentData} style={innerStyle}>{text}</Text>}
-        {type === 'title' && <Title componentData={componentData} style={innerStyle}>{text}</Title>}
+        {type === 'text' && <Text componentData={componentData} isRendering={isRendering} style={innerStyle}>{text}</Text>}
+        {type === 'title' && <Title componentData={componentData} isRendering={isRendering} style={innerStyle}>{text}</Title>}
         {type === 'input' && <Input type="text" componentData={componentData} style={innerStyle} />}
         {type === 'tab' && <Tab componentData={componentData} isRendering={isRendering} canvasLocked={canvasLocked} style={innerStyle} />}
+        {type === 'image' && <Image componentData={componentData} preview={false} isRendering={isRendering} alt={String(componentData.id)} />}
       </div>
     </Wrapper>
   )

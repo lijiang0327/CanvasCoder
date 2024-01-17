@@ -13,7 +13,7 @@ export interface ICanvas {
   locked?: boolean
 }
 
-export type IComponentType = 'text' | 'input' | 'button' | 'title' | 'tab';
+export type IComponentType = 'text' | 'input' | 'button' | 'title' | 'tab' | 'image';
 
 export type CustomEvent = {
   funcName: string
@@ -41,6 +41,7 @@ export interface IComponent {
   children?: string[]
   parentId?: number | string
   locked?: boolean
+  src?: string
 }
 
 export interface IGroup {

@@ -1,6 +1,5 @@
-import { ICanvas } from "@/store/editorStore";
-import { IComponent } from "@/store/editorStore"
-import { CollapseProps } from "antd";
+import type { IComponent, ICanvas } from "@/store/editorStore.d"
+import type { CollapseProps } from "antd";
 
 export type GetItemsType = (
   component: IComponent, 

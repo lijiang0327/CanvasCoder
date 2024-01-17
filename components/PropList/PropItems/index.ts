@@ -5,6 +5,7 @@ import title from './title';
 import input from './input';
 import canvasProp from './canvas';
 import tab from './tab';
+import image from './image';
 import {Prop} from './prop';
 import isIComponent from "@/utils/isIComponent";
 
@@ -16,6 +17,7 @@ const propMap: {
   text: title,
   title,
   tab,
+  image,
 }
 
 export const getCanvasPropItems = (canvas: ICanvas) => {
