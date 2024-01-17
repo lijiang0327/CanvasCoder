@@ -99,7 +99,7 @@ const Header: FC<HeaderProps> = ({className}) => {
             <Button type="primary" icon={<ExportOutlined />} />
           </Popconfirm>
         </Tooltip>
-        <Divider type="vertical" className="border-sky-500 h-6" />
+        <Divider type="vertical" style={{borderColor: 'skyblue', height: '20px'}} />
         <Tooltip
           title="新建页面"
         >
@@ -118,6 +118,7 @@ const Header: FC<HeaderProps> = ({className}) => {
             onClick={onSaveHandler}
           />
         </Tooltip>
+        <Divider type="vertical" style={{borderColor: 'skyblue', height: '20px'}} />
         <Tooltip
           title="复位画布位置"
         >
@@ -127,7 +128,6 @@ const Header: FC<HeaderProps> = ({className}) => {
             icon={<RestOutlined />} 
           />
         </Tooltip>
-        <Divider type="vertical" className="border-sky-500 h-6" />
         <Tooltip
           title={canvas.locked ? '解锁画布' : '锁定画布'}
         >
