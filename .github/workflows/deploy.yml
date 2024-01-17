@@ -1,0 +1,23 @@
+name: Editor Canvas Deployment
+run-name: ${{ github.actor }} deployed
+on: [push]
+jobs: 
+  PullSourceAndDeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull source
+        uses: appleboy/ssh-action@v0.1.6
+        with: 
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.ACCESS_TOKEN }}
+          script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            cd ~/deploy/CanvasCoder
+            git checkout .
+            git pull
+            pnpm install
+            pnpm build
+            pnpm start
+            
