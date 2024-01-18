@@ -16,6 +16,7 @@ import PropItem from "@/components/PropItem";
 import {GetItemsType, Prop} from './prop';
 import {getAllImages, deleteImage} from '@/utils/images';
 import {DeleteOutlined, CheckOutlined} from '@ant-design/icons';
+import {IComponent} from "@/store/editorStore.d";
 
 type ImageItemProps = {
   width: string | number
@@ -154,10 +155,10 @@ const getItems: GetItemsType = (
 ) => {
   const props = <>
     <PropItem label="ID">
-      <span>{component.id}</span>
+      <span>{(component as IComponent).id}</span>
     </PropItem>
     <PropItem label="图片地址">
-      <ImageStore imageUrl={component.src ?? ''} onPropUpdateHandler={onPropUpdateHandler} />
+      <ImageStore imageUrl={(component as IComponent).src ?? ''} onPropUpdateHandler={onPropUpdateHandler} />
     </PropItem>
   </>
 

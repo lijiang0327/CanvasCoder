@@ -2,7 +2,7 @@ import type { IComponent, ICanvas } from "@/store/editorStore.d"
 import type { CollapseProps } from "antd";
 
 export type GetItemsType = (
-  component: IComponent, 
+  component: IComponent | ICanvas, 
   propUpdateHandler: (key: string, value: unknown) => void,
   styleUpdateHandler: (key: string, value: unknown) => void,
 ) => CollapseProps['items'];

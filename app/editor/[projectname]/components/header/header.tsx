@@ -3,8 +3,18 @@
 import {FC} from 'react';
 import classNames from 'classnames';
 import {Button, Flex, Tooltip, Popconfirm, message, Divider} from 'antd';
-import {SaveOutlined, ExportOutlined, RestOutlined, FileAddOutlined, LockOutlined, UnlockOutlined} from '@ant-design/icons';
+import {
+  SaveOutlined, 
+  ExportOutlined, 
+  RestOutlined, 
+  FileAddOutlined, 
+  LockOutlined, 
+  UnlockOutlined,
+} from '@ant-design/icons';
+import {SimCardDownloadOutlined} from '@mui/icons-material';
 import {useParams, useRouter} from 'next/navigation';
+import html2canvas from 'html2canvas';
+import {saveAs} from 'file-saver';
 
 import useEditorStore, {initDefaultCanvasData, updateCanvasProp, addPage, setPages} from '@/store/editorStore';
 import useGlobalStateStore from '@/store/globalStateStore';
@@ -81,6 +91,24 @@ const Header: FC<HeaderProps> = ({className}) => {
     })
   }
 
+  const onSaveToImageHandler = async () => {
+    const editorCanvas = document.getElementById('editorCanvas');
+
+    if (!editorCanvas) return;
+
+    editorCanvas.classList.remove('shadow');
+
+    const canvasData = await html2canvas(editorCanvas);
+
+    editorCanvas.classList.add('shadow');
+
+    canvasData.getContext('2d', {willReadFrequently: true});
+    canvasData.toBlob((blob) => {
+      if (!blob) return;
+      saveAs(blob, canvas.title);
+    })
+  }
+
   return (
     <div className={classNames(className, 'flex items-center justify-center')}>
       <h1 className="absolute left-2 text-2xl">{canvas.title}</h1>
@@ -116,6 +144,15 @@ const Header: FC<HeaderProps> = ({className}) => {
             type="primary" 
             icon={<SaveOutlined />} 
             onClick={onSaveHandler}
+          />
+        </Tooltip>
+        <Tooltip
+          title="保存成图片"
+        >
+          <Button 
+            type="primary" 
+            icon={<SimCardDownloadOutlined className="w-5 h-5" />} 
+            onClick={onSaveToImageHandler}
           />
         </Tooltip>
         <Divider type="vertical" style={{borderColor: 'skyblue', height: '20px'}} />

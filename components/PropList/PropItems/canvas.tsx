@@ -3,6 +3,7 @@ import { CollapseProps, ColorPicker, Input } from "antd";
 import PropItem from "@/components/PropItem";
 import {GetItemsType, Prop} from './prop';
 import AddGlobalState from "./addGlobalState";
+import {ICanvas} from "@/store/editorStore.d";
  
 const getItems: GetItemsType = (
   canvas, 
@@ -12,7 +13,7 @@ const getItems: GetItemsType = (
   const props = (
     <PropItem label="页面名称">
       <Input
-        value={canvas.title} 
+        value={(canvas as ICanvas).title} 
         onChange={(e) => onPropUpdateHandler('title', e.target.value)} 
       />
     </PropItem>

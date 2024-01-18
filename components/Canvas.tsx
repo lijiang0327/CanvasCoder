@@ -100,6 +100,7 @@ const Canvas: FC<CanvasProps> = () => {
         'transform': `translateX(${translateX}px) translateY(${translateY}px) scale(${zoom})`,
         minWidth: style?.width,
         maxWidth: style?.width,
+        zIndex: 1000,
       }}
       className={classNames(
         'shadow flex-1', 
@@ -108,11 +109,11 @@ const Canvas: FC<CanvasProps> = () => {
       )}
       onDrop={canvasOnDropHandler}
       onDragOver={noop}
-      role="application"
       onMouseDown={locked ? undefined : onCanvasMouseDownHandler}
       onMouseUp={noop}
       onClick={onCanvasClickHandler}
       ref={canvasRef}
+      id="editorCanvas"
     >
       {children?.map((id) => {
         const child = childrenMap[id];
