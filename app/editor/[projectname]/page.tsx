@@ -14,7 +14,7 @@ import {initState as initGlobalState} from '@/store/globalStateStore';
 
 const Editor = () => {
   const {projectname} = useParams<{projectname: string}>();
-  const {pages, currentPage} = useEditorStore((state) => ({pages: state.allPages, currentPage: state.currentPage}))
+  const {pages, currentPage} = useEditorStore((state) => ({pages: state.allPages, currentPage: state.currentPage}));
 
   const fetchPages = useCallback(async () => {
     const result = await getPages(projectname);
