@@ -7,6 +7,7 @@ import PropItem from "@/components/PropItem";
 import {GetItemsType, Prop} from './prop';
 import { CustomEvent, IComponent } from "@/store/editorStore.d";
 import { DeleteOutlined } from "@ant-design/icons";
+import isIComponent from "@/utils/isIComponent";
 
 type ButtonEventProps = {
   onPropUpdateHandler: (key: string, value: unknown) => void,
@@ -84,6 +85,9 @@ const getItems: GetItemsType = (
   onPropUpdateHandler, 
   onStyleUpdateHandler,
 ) => {
+  if (!isIComponent(component)) {
+    return;
+  }
 
   const props = <>
     <PropItem label="ID">

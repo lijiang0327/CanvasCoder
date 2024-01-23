@@ -5,6 +5,7 @@ import PropItem from "@/components/PropItem";
 import {GetItemsType, Prop} from './prop';
 import {IComponent} from "@/store/editorStore.d";
 import usePageStateStore from "@/store/pageStateStore";
+import isIComponent from "@/utils/isIComponent";
 
 type VariablesProps = {
   propUpdateHandler: (key: string, value: unknown) => void,
@@ -46,6 +47,10 @@ const getItems: GetItemsType = (
   onPropUpdateHandler, 
   onStyleUpdateHandler,
 ) => {
+  if (!isIComponent(component)) {
+    return;
+  }
+
   const props = <>
     <PropItem label="ID">
       <span>{component.id}</span>

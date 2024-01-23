@@ -17,7 +17,7 @@ const getItems: GetItemsType = (
 
   const props = <>
     <PropItem label="ID">
-      <span>{component.id}</span>
+      <span>{tabComponent.id}</span>
     </PropItem>
     <PropItem label="标签">
       <>
@@ -30,7 +30,7 @@ const getItems: GetItemsType = (
                 const items = cloneDeep(tabItems);
                 items[index].label = e.target.value;
                 updateComponent({
-                  id: component.id,
+                  id: tabComponent.id,
                   items: [...items]
                 })
               }}
