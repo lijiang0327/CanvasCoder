@@ -19,5 +19,5 @@ jobs:
             git pull
             pnpm install
             pnpm build
-            pnpm start
+            pnpm prod
             

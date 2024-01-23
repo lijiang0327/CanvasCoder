@@ -6,6 +6,10 @@
     "dev": "next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start -H 0.0.0.0",
+    "prod:start": "pm2 start --name=canvas-coder npm -- start",
+    "prod:stop": "pm2 stop canvas-coder",
+    "prod:restart": "pm2 restart canvas-coder",
+    "prod": "npm run prod:stop && npm run prod:restart",
     "lint": "next lint"
   },
   "dependencies": {
