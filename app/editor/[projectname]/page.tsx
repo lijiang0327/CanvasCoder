@@ -60,9 +60,9 @@ const Editor = () => {
   return (
     <div className="flex flex-col w-[100vw] h-[100vh]">
       <Header className="h-14"/>
-      <div className="flex-1 flex relative">
+      <div className="flex relative" style={{height: 'calc(100vh - 3.5rem)'}}>
         <LeftSideBar className="h-full bg-slate-100" />
-        <Center className="w-full h-full bg-slate-50 flex-1 flex items-center justify-center overflow-hidden" />
+        <Center className="w-full h-full bg-slate-50 flex items-center justify-center overflow-hidden" />
         <RightSideBar className="h-full bg-slate-100 w-80" />
       </div>
     </div>
