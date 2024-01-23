@@ -141,7 +141,7 @@ const Toolbox: FC<ToolboxProps> = () => {
       case 'pieChart':
         e.dataTransfer.setData('component', JSON.stringify(getDefaultPieChartComponent()));
         break;
-      case 'pieChart':
+      case 'barChart':
         e.dataTransfer.setData('component', JSON.stringify(getDefaultBarChartComponent()));
         break;
     }
