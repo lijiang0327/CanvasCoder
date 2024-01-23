@@ -44,7 +44,7 @@ const FlowEditor: FC<FlowEditorProps> = () => {
         nodeTypes={nodeTypes}
         fitView 
         style={{
-          backgroundColor: '#ff0'
+          backgroundColor: '#fff'
         }}
       />
     </div>

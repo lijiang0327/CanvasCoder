@@ -18,18 +18,33 @@ const Center: FC<CenterProps> = ({className}) => {
     clearSelectedComponent();
   }
 
-  return (
-    <div 
-      className={className}
-      onClick={onClickHandler}
-    >
-      <SplitContainer
-        topChild={<Canvas />}
-        bottomChild={<FlowEditor />}
-        defaultTopHeight={typeof window === 'undefined' ? 0 : (window.innerHeight - 200)}
-      />
-    </div>
-  )
+  if (process.env.NEXT_PUBLIC_MODE === 'full') {
+    return (
+      <div 
+        className={className}
+        onClick={onClickHandler}
+      >
+        <SplitContainer
+          topChild={<Canvas />}
+          bottomChild={<FlowEditor />}
+          defaultTopHeight={typeof window === 'undefined' ? 0 : (window.innerHeight - 200)}
+        />
+      </div>
+    )
+  }
+
+  if (process.env.NEXT_PUBLIC_MODE === 'simple') {
+    return (
+      <div 
+        className={className}
+        onClick={onClickHandler}
+      >
+        <Canvas />
+      </div>
+    )
+  }
+
+  return null;
 }
 
 export default Center;
