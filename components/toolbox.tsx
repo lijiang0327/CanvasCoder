@@ -9,7 +9,9 @@ import {
   RadioButtonChecked as RadioIcon,
   ImageOutlined as ImageIcon,
   Title as TitleIcon,
-  TabOutlined as TabOutlinedIcon
+  TabOutlined as TabOutlinedIcon,
+  PieChartOutline,
+  BarChartOutlined,
 } from '@mui/icons-material';
 
 import {addComponent} from '@/store/editorStore';
@@ -20,6 +22,8 @@ import getDefaultInputComponent from '@/utils/getDefaultInputComponent';
 import getDefaultTitleComponent from '@/utils/getDefaultTitleComponent';
 import getDefaultTabComponent from '@/utils/getDefaultTabComponent';
 import getDefaultImageComponent from '@/utils/getDefaultImageComponent';
+import getDefaultPieChartComponent from '@/utils/getDefaultPieChartComponent';
+import getDefaultBarChartComponent from '@/utils/getDefaultBarChartComponent';
 
 type ToolboxProps = {};
 
@@ -72,7 +76,20 @@ const Toolbox: FC<ToolboxProps> = () => {
     // },
   ];
 
-  const onBasicComponentClick = (type: IComponentType) => {
+  const advancedComponents = [
+    {
+      type: 'pieChart',
+      name: 'Pie',
+      icon: <PieChartOutline />
+    },
+    {
+      type: 'barChart',
+      name: 'Bar',
+      icon: <BarChartOutlined />
+    }
+  ];
+
+  const onComponentClickHandler = (type: IComponentType) => {
     switch(type) {
       case 'button':
         addComponent(getDefaultButtonComponent());
@@ -92,10 +109,16 @@ const Toolbox: FC<ToolboxProps> = () => {
       case 'image':
         addComponent(getDefaultImageComponent());
         break;
+      case 'pieChart':
+        addComponent(getDefaultPieChartComponent());
+        break;
+      case 'barChart':
+        addComponent(getDefaultBarChartComponent());
+        break;
     }
   }
 
-  const onBasicComponentDragStartHandler = (e: DragEvent, type: IComponentType) => {
+  const onComponentDragStartHandler = (e: DragEvent, type: IComponentType) => {
     switch(type) {
       case 'button':
         e.dataTransfer.setData('component', JSON.stringify(getDefaultButtonComponent()));
@@ -115,6 +138,12 @@ const Toolbox: FC<ToolboxProps> = () => {
       case 'image':
         e.dataTransfer.setData('component', JSON.stringify(getDefaultImageComponent()));
         break;
+      case 'pieChart':
+        e.dataTransfer.setData('component', JSON.stringify(getDefaultPieChartComponent()));
+        break;
+      case 'pieChart':
+        e.dataTransfer.setData('component', JSON.stringify(getDefaultBarChartComponent()));
+        break;
     }
   }
 
@@ -129,9 +158,9 @@ const Toolbox: FC<ToolboxProps> = () => {
               <Col span={12} key={component.type}>
                 <div 
                   className="p-2 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-100"
-                  onClick={() => onBasicComponentClick(component.type as IComponentType)}
+                  onClick={() => onComponentClickHandler(component.type as IComponentType)}
                   draggable
-                  onDragStart={(e) => onBasicComponentDragStartHandler(e, component.type as IComponentType)}
+                  onDragStart={(e) => onComponentDragStartHandler(e, component.type as IComponentType)}
                 >
                   {component.icon}
                   <span>{component.name}</span>
@@ -145,7 +174,23 @@ const Toolbox: FC<ToolboxProps> = () => {
       label: '高级组件',
       key: '2',
       children: (
-        <div>高级组件</div>
+        <Row>
+          {advancedComponents.map((component) => {
+            return (
+              <Col span={12} key={component.type}>
+                <div 
+                  className="p-2 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-100"
+                  onClick={() => onComponentClickHandler(component.type as IComponentType)}
+                  draggable
+                  onDragStart={(e) => onComponentDragStartHandler(e, component.type as IComponentType)}
+                >
+                  {component.icon}
+                  <span>{component.name}</span>
+                </div>
+              </Col>
+            )
+          })}
+        </Row>
       )
     }
   ]

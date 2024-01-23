@@ -13,7 +13,7 @@ export interface ICanvas {
   locked?: boolean
 }
 
-export type IComponentType = 'text' | 'input' | 'button' | 'title' | 'tab' | 'image';
+export type IComponentType = 'text' | 'input' | 'button' | 'title' | 'tab' | 'image' | 'pieChart' | 'barChart';
 
 export type CustomEvent = {
   funcName: string

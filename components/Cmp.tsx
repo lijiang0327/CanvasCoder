@@ -13,6 +13,8 @@ import Text from './Text';
 import Title from './Title';
 import Tab from './Tab';
 import Image from './Image';
+import PieChart from './PieChart';
+import BarChart from './BarChart';
 
 type CmpProps = {
   componentData: IComponent
@@ -234,6 +236,8 @@ const Cmp: FC<CmpProps> = ({componentData, canvasLocked, isRendering = false, pa
         {type === 'input' && <Input type="text" componentData={componentData} style={innerStyle} />}
         {type === 'tab' && <Tab componentData={componentData} isRendering={isRendering} canvasLocked={canvasLocked} style={innerStyle} />}
         {type === 'image' && <Image componentData={componentData} preview={false} isRendering={isRendering} alt={String(componentData.id)} />}
+        {type === 'pieChart' && <PieChart componentData={componentData} isRendering={isRendering} />}
+        {type === 'barChart' && <BarChart componentData={componentData} isRendering={isRendering} />}
       </div>
     </Wrapper>
   )

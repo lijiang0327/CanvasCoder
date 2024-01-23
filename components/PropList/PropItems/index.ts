@@ -6,6 +6,8 @@ import input from './input';
 import canvasProp from './canvas';
 import tab from './tab';
 import image from './image';
+import pieChart from './pieChart';
+import barChart from './barChart';
 import {Prop} from './prop';
 import isIComponent from "@/utils/isIComponent";
 
@@ -18,6 +20,8 @@ const propMap: {
   title,
   tab,
   image,
+  pieChart,
+  barChart
 }
 
 export const getCanvasPropItems = (canvas: ICanvas) => {
