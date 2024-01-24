@@ -8,7 +8,7 @@ interface PieChartComponentProps extends CSSProperties {
   isRendering: boolean
 } 
 
-const PieChartComponent: FC<PieChartComponentProps> = () => {
+const PieChartComponent: FC<PieChartComponentProps> = ({componentData}) => {
   const option = {
     title: {
       text: 'Referer of a Website',
@@ -18,9 +18,10 @@ const PieChartComponent: FC<PieChartComponentProps> = () => {
     tooltip: {
       trigger: 'item'
     },
+    color: ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc'],
     legend: {
       orient: 'vertical',
-      left: 'left'
+      left: 'left',
     },
     series: [
       {
@@ -45,7 +46,15 @@ const PieChartComponent: FC<PieChartComponentProps> = () => {
     ]
   }
 
-  return <ReactEcharts option={option}></ReactEcharts>
+  return (
+    <ReactEcharts 
+      option={option}
+      opts={{
+        height: Number(componentData.style.height),
+        width: Number(componentData.style.width),
+      }}
+    ></ReactEcharts>
+  )
 }
 
 export default PieChartComponent;
