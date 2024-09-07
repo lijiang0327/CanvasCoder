@@ -12,8 +12,16 @@ type SplitContainerProps = {
   className?: string;
 }
 
+const CSS = `
+  * {
+    pointer-events: none !important;
+    cursor: row-resize !important;
+  }
+`
+
 const SplitContainer: FC<SplitContainerProps> = ({topChild, bottomChild, defaultTopHeight, className}) => {
   const [topHeight, setTopHeight] = useState<number | undefined>();
+  const [isDragging, setIsDragging] = useState(false)
 
   useEffect(() => {
     defaultTopHeight && setTopHeight(defaultTopHeight);
@@ -37,9 +45,12 @@ const SplitContainer: FC<SplitContainerProps> = ({topChild, bottomChild, default
       startY = moveEvent.pageY;
     }, 20);
 
+    setIsDragging(true);
+
     const up = () => {
       document.removeEventListener('mousemove', move);
       document.removeEventListener('mouseup', up);
+      setIsDragging(false);
     }
 
     document.addEventListener('mousemove', move);
@@ -58,7 +69,7 @@ const SplitContainer: FC<SplitContainerProps> = ({topChild, bottomChild, default
         {topChild}
       </div>
       <div 
-        className={classNames("w-full h-1 shadow-md bg-slate-200 cursor-row-resize")} 
+        className={classNames("w-full h-1 shadow-md relative z-10 bg-slate-200 cursor-row-resize")} 
         onMouseDown={onDividerMouseDownHandler}
       />
       <div
@@ -66,6 +77,7 @@ const SplitContainer: FC<SplitContainerProps> = ({topChild, bottomChild, default
       > 
         {bottomChild}
       </div>
+      {isDragging && <style>{CSS}</style>}
     </div>
   )
 }

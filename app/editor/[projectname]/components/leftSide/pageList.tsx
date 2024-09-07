@@ -36,7 +36,7 @@ const PageList: FC<PageListProps> = () => {
             }}
           >
             <div className={classNames(page === currentPage && 'text-sky-500', 'py-2 flex justify-between w-full items-center')}>
-              <span>{page}</span>
+              <span className='cursor-pointer select-none'>{page}</span>
 
               <Popconfirm
                 title="提示"

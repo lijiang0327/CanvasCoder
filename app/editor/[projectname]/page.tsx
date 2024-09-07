@@ -59,7 +59,7 @@ const Editor = () => {
 
   return (
     <div className="flex flex-col w-[100vw] h-[100vh]">
-      <Header className="h-14"/>
+      <Header className="h-14 z-10 shadow-md"/>
       <div className="flex relative" style={{height: 'calc(100vh - 3.5rem)'}}>
         <LeftSideBar className="h-full bg-slate-100" />
         <Center className="w-full h-full bg-slate-50 flex items-center justify-center overflow-hidden" />
